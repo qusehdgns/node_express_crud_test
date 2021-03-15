@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fetch Test</title>
+    </head>
+    <body>
+        <button onclick="getUsers();">GET_ALL</button>
+        <p/>
+        <input type="text" id="id" placeholder="id"/>
+        <input type="text" id="name" placeholder="name"/>
+        <button onclick="postUser();">POST</button>
+        <button onclick="getUser();">GET</button>
+        <button onclick="putUser();">PUT</button>
+        <button onclick="deleteUser();">DELETE</button>
+        <div id="print"></div>
+    </body>
+    <script>
+        let id_text = document.getElementById("id")
+        let name_text = document.getElementById("name")
+        let print = document.getElementById("print")
+
+        function getUsers(){
+            fetch("/crud/test", {
+                method : "GET",
+                headers:{
+                    "Content-Type" : "application/json",
+                },
+            }).then(response => response.json())
+            .then(data => print.innerHTML = JSON.stringify(data));
+        }
+
+        function postUser(){
+            fetch("/crud/test", {
+                method : "POST",
+                headers:{
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify({
+                    id: id_text.value,
+                    name: name_text.value,
+                })
+            }).then(response => response.json())
+            .then(data => print.innerHTML = JSON.stringify(data));
+        }
+
+        function getUser(){
+            fetch("/crud/test/" + id_text.value).then(response => response.json())
+            .then(data => print.innerHTML = JSON.stringify(data));
+        }
+
+        function putUser(){
+            fetch("/crud/test/" + id_text.value, {
+                method : "PUT",
+                headers:{
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify({
+                    name: name_text.value,
+                })
+            }).then(response => response.json())
+            .then(data => print.innerHTML = JSON.stringify(data));
+        }
+
+        function deleteUser(){
+            fetch("/crud/test/" + id_text.value, {
+                method : "DELETE",
+            }).then(response => response.json())
+            .then(data => print.innerHTML = JSON.stringify(data));
+        }
+    </script>
+</html>
