@@ -15,5 +15,13 @@
   },
   "devDependencies": {},
   "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qusehdgns/node_express_crud_test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qusehdgns/node_express_crud_test/issues"
+  },
+  "homepage": "https://github.com/qusehdgns/node_express_crud_test#readme",
   "description": ""
 }
